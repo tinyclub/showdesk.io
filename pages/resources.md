@@ -80,11 +80,11 @@ order: 100
 
         {% if condition %}
           {% if condition != 'path' %}
-            {% if article[{{condition}}] != {{value}} %}
+            {% if article[condition] != value %}
               {% continue %}
             {% endif %}
           {% else %}
-            {% unless article[{{condition}}] contains {{value}} %}
+            {% unless article[condition] contains value %}
               {% continue %}
             {%endunless%}
           {% endif %}
