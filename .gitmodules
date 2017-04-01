@@ -10,3 +10,6 @@
 [submodule "recordings/default"]
 	path = recordings/default
 	url = https://github.com/tinyclub/vrecordings
+[submodule "cloud-ubuntu"]
+	path = cloud-ubuntu
+	url = https://github.com/tinyclub/cloud-ubuntu

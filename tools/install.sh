@@ -16,6 +16,7 @@ git submodule update --init vnc2swf
 git submodule update --init vplayer
 git submodule update --init vtools
 git submodule update --init recordings/default
+git submodule update --init cloud-ubuntu
 popd
 
 echo "LOG: Install desktop shortcuts"
