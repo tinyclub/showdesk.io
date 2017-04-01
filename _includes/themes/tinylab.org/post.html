@@ -11,8 +11,12 @@
      {% include widgets/post_header %}
 
      <div id="main_content_container">
-	{% capture iframe %}{% if page.session %}<iframe src="{{ page.session }}{% if page.fullscreen %}?f=1{% endif %}" width="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" border="0" allowfullscreen></iframe>{% endif %}{% endcapture %}
-	{% capture iframe_fullpath %}{% if page.session %}<iframe src="{{ site.production_url }}{{ page.session }}{% if page.fullscreen %}?f=1{% endif %}" width="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" border="0" allowfullscreen></iframe>{% endif %}{% endcapture %}
+
+	{% capture fullscreen %}{% if page.fullscreen %}{% if page.session contains "?" %}&{% else %}?{% endif %}f=1{% endif %}{% endcapture %}
+
+	{% capture iframe %}{% if page.session %}<iframe src="{{ page.session }}{{ fullscreen }}" width="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" border="0" allowfullscreen></iframe>{% endif %}{% endcapture %}
+
+	{% capture iframe_fullpath %}{% if page.session %}<iframe src="{% if not (page.session contains "http") %}{{ site.production_url }}{% endif %}{{ page.session }}{{ fullscreen }}" width="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" border="0" allowfullscreen></iframe>{% endif %}{% endcapture %}
 
 	{{ iframe }}
 
