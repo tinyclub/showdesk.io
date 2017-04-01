@@ -61,6 +61,30 @@ To share the VNC sessions, simply generate the session and post pages for publis
 
 Commit the new generated data in `sessions/`, `_posts/` and `recordings/` into your own repo and then send a 'Pull Request' to [showdesk.io][7].
 
+If want to embed the session in your own web page, just check the `permalink` address in `sessions/` and link it with:
+
+    <iframe src="http://showdesk.io/50bc346f53a19b4d1f813b428b0b7b49/?f=1" width="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" border="0" allowfullscreen></iframe>
+
+To auto resize the video, use [iframeresizer][8]:
+
+    <script type="text/javascript" src="https://raw.githubusercontent.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.min.js"></script>
+    <script>
+    function resize_iframe() {
+        iFrameResize({
+                log: false,
+                autoResize: true,
+                interval: -1,
+                minHeight: 300,
+                heightCalculationMethod: "lowestElement",
+        });
+    }
+
+    $(document).ready(function () {
+      resize_iframe();
+      $('iframe').iframeAutoHeight({debug: false});
+    });
+    </script>
+
 [0]: http://showdesk.io
 [1]: http://showterm.io
 [2]: https://github.com/novnc/noVNC
@@ -68,3 +92,4 @@ Commit the new generated data in `sessions/`, `_posts/` and `recordings/` into y
 [4]: https://github.com/tinyclub/showdesk.io#fork-destination-box
 [5]: https://github.com/tinyclub/pyvnc2swf
 [7]: https://github.com/tinyclub/showdesk.io
+[8]: https://github.com/davidjbradshaw/iframe-resizer
