@@ -6,6 +6,7 @@
 	url = https://github.com/tinyclub/pyvnc2swf.git
 [submodule "vplayer"]
 	path = vplayer
+	branch = gh-pages
 	url = https://github.com/tinyclub/vplayer.io.git
 [submodule "recordings/default"]
 	path = recordings/default

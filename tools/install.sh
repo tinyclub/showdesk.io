@@ -9,15 +9,10 @@ NOVNC_RECORD=${TOP_DIR}/tools/record.sh
 NOVNC_PLAY=${TOP_DIR}/tools/play.sh
 NOVNC_RECORD_ICON=${TOP_DIR}/vnc2swf/icons/recorder.png
 NOVNC_PLAY_ICON=${TOP_DIR}/vnc2swf/icons/player.png
+NOVNC_SYNC=${TOP_DIR}/tools/sync.sh
 
 echo "LOG: Pull noVNC recorder(pyvnc2swf), player(vplayer), tools(vtools) and data(recordings)"
-pushd ${TOP_DIR}
-git submodule update --init vnc2swf
-git submodule update --init vplayer
-git submodule update --init vtools
-git submodule update --init recordings/default
-git submodule update --init cloud-ubuntu
-popd
+$NOVNC_SYNC
 
 echo "LOG: Install desktop shortcuts"
 

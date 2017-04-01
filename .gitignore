@@ -22,3 +22,4 @@ pdfs/*
 .lab*
 *.pyc
 .vnc.pwd.file
+*_new*
