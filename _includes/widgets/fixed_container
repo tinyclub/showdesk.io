@@ -1,0 +1,71 @@
+<div id="fixed-container">
+  <section id="author_widget" class="active">
+    {% assign author_box_visible="style='display:visible'" %}
+    {% assign author_box_ref = 0 %}
+    {% assign author_box_id = "sidebar" %}
+    {% include widgets/author_box %}
+    {% assign author_box_visible="" %}
+  </section>
+
+  {% if page.ctg == true %}
+   {% include widgets/categories_list %}
+  {% endif %}
+
+  {% if page.toc != false %}
+   {% include widgets/toc_box %}
+  {% endif %}
+
+  {% if page.group != "home" %}
+    {% include widgets/album_list %}
+    {% include widgets/related_posts_list %}
+    {% include widgets/recent_posts_list %}
+  {% else %}
+    {% include widgets/sidebars %}
+  {% endif %}
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  var container_top = $('#fixed-container').offset().top;
+  var firefox = 0;
+  var scroll_over = 0;
+  var scroll_top = 0, top;
+  var zoom;
+
+  function get_zoom() {
+    zoom = parseFloat($(document.body).css('zoom'));
+    if (!zoom) {
+      zoom = parseFloat($(document.body).css('transform').split(',')[0].split('(')[1]);
+      if (!zoom)
+        zoom = 1;
+      firefox = 1;
+    }
+  }
+
+  get_zoom();
+
+  $(window).resize(function() {
+    if (scroll_over && firefox) {
+      get_zoom();
+
+      top = (scroll_top / zoom) + "px";
+      $('#fixed-container').css('position', 'fixed').css('top', top);
+    }
+  });
+
+  $(window).scroll(function() {
+    scroll_top = $(window).scrollTop();
+    /* console.log(scroll_top, container_top); */
+    if(scroll_top > container_top) {
+      scroll_over = 1;
+      top = 0;
+      if (firefox)
+           top = (scroll_top / zoom) + "px";
+
+      $('#fixed-container').css('position', 'fixed').css('top', top);
+    } else {
+      scroll_over = 1;
+      $('#fixed-container').css('position','static');
+    }
+  });
+});
+</script>

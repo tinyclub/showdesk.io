@@ -1,0 +1,34 @@
+{% assign url = site.JB.archive_path %}
+{% assign prompt = "查看所有文章" %}
+{% assign truncate = true %}
+{% assign tooltip = false %}
+{% assign title = "最近文章" %}
+{% assign icon = "star" %}
+{% assign list = site.posts %}
+{% assign condition = nil %}
+{% assign items_limit = false %}
+{% assign new_icon_style=true %}
+
+{% for item in list %}
+{% if item.title and page.title and page.title == item.title %}
+  {% continue %}
+{% endif %}
+{% if page.album and item.album and page.album == item.album %}
+  {% continue %}
+{% endif %}
+{% assign size = 1 %}
+{% break %}
+{% endfor %}
+
+{% if size != 0 %}
+<section id="recent_posts" style="display:block;">
+{% include widgets/lists %}
+</section>
+{% endif %}
+
+{% assign more = "" %}
+{% assign prompt = "" %}
+{% assign url = "" %}
+{% assign truncate = false %}
+{% assign condition = nil %}
+{% assign value = "" %}

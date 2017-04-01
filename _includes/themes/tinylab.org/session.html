@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="UTF-8">
+	<title>{{ site.title }} - {{ page.title }}</title>
+
+{% capture tmpcache %}
+{% capture nl0 %}
+{% endcapture %}
+{% endcapture %}{% assign tmpcache = nil %}
+
+  {% capture keywords %}{% assign keywords = page.keywords %}{% assign tags = page.tags | join: "," %}{{ page.categories | join: "," | append: "," | append:"," | append: tags | append:',' | append: keywords | replace:", ","," | replace:"  "," " | replace:"  "," " | append:',' | append:page.album | strip_html | xml_escape | downcase | split:"," | sort | uniq | join:"," }}{% endcapture %}
+
+  {% assign keywords = keywords | prepend:"pLACeHoldER," | replace: ",,,","," | replace: ",,","," | remove:'pLACeHoldER,' %}
+
+  {% if keywords %}
+    <meta name="keywords" content="{{ keywords }}">
+
+    {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ page.content | strip_html | remove:'>' | remove: '<' | replace: nl0, ' ' | replace: '    ', ' ' | replace: '   ', ' ' | replace: '  ', ' ' |  strip | truncate:200 | xml_escape }}{% endif %}{% endcapture %}
+    {% if content %}
+     <meta name="description" content="{{ description }}"/>
+    {% endif %}
+
+  {% endif %}
+
+  <meta name="author" content="{% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif%}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ BASE_PATH }}/favicon.ico">
+
+        {% assign config = site.JB.sessions.config %}
+        {% assign vplayer = site.JB.sessions[config].vplayer %}
+        {% assign vdata = site.JB.sessions[config].data %}
+
+	<link rel="stylesheet" href="{{ vplayer }}/playback/ui.css">
+	<link rel="stylesheet" href="{{ vplayer }}/playback/playbar.css">
+	<link rel="stylesheet" href="{{ vplayer }}/playback/records.css">
+    </head>
+
+    <script type="text/javascript">
+	var INCLUDE_URI = "{{ vplayer }}";
+	var DATA_INCLUDE_URI = "{{ vdata }}";
+	var DATA_URI = "{{ page.record_data }}";
+	var RECORD_DIR = DATA_INCLUDE_URI + "{{ page.record_dir }}"
+	//var FULL_SCREEN = 1;
+	//var INCLUDE_URI= "http://example.com/";
+    </script>
+
+    <body>
+	<div id="VNC_main">
+
+	<div id="VNC_playbar">
+	  <div id="left_playbar">
+	    <span id="current_time" title="Current time"></span>
+	  </div>
+
+	  <div id="middle_playbar">
+	    <input id="trackBar" type="range" min="0" max="10" step="1" value="0" title="Drag or Click to the target frame" />
+	  </div>
+
+	  <div id="right_playbar">
+	    <span id="total_time" title="Total time"></span>
+	    <span id="fsBtn" title="Enter Fullscreen">[+]</span>
+	    <span id="moreBtn" title="Show noVNC Sessions">...</span>
+	  </div>
+	</div>
+
+	<div id="VNC_screen">
+	    <canvas id="VNC_canvas" width="100%">
+		Canvas not supported.
+	    </canvas>
+	    <canvas id="VNC_canvas_backup" width="100%">
+		Canvas not supported.
+	    </canvas>
+	    <div id="VNC_status">Loading ...</div>
+	</div>
+
+	<div id="VNC_records">
+	</div>
+
+      </div>
+    </body>
+
+    <script src="{{ vplayer }}/core/util.js"></script>
+    <script src="{{ vplayer }}/app/webutil.js"></script>
+    <script src="{{ vplayer }}/playback/ui.js"></script>
+</html>

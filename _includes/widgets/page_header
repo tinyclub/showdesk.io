@@ -1,0 +1,35 @@
+{% if page.author or page.comments == null %}
+<div class="post-extra">
+ {% if page.author %}
+  <div class="pull-left">
+  {% if page.date %}
+    {% assign post_date = page.date %}
+  {% else %}
+    {%if page.update %}
+    {% assign post_date = page.update %}
+    {%endif %}
+  {% endif %}
+  <span>由 <a onclick="common_click('#author-box-wrap')" id="author" class="author" href="#" title="点击 关注/联系/赞助 {% if page.author == 'admin' %}管理员{%else%}作者{%endif%}">{{ page.author }}</a> 创建{%if post_date%}于 {{ post_date | date: "%Y/%m/%d" }}{%endif%} </span>
+  </div>
+ {% endif %}
+ {% if page.comments != false %}
+  <div class="pull-right">
+    <span><a href="#comments" style="text-decoration:none;" title="评论或分享本文">
+      <i class="icon-large icon-comment-empty"> 评论 </i>
+    </a>
+    <a href="#sponsor" style="text-decoration:none;" title="微信扫码，打赏一下">
+      <i class="icon-large icon-yen"> 打赏</i>
+    </a>
+    </span>
+  </div>
+ {% endif %}
+</div>
+{% endif %}
+
+{% if page.author %}
+<div id="author-box-wrap" class="author-box-wrap">
+   {% assign author_box_id = "page_header" %}
+   {% assign author_box_ref = 1 %}
+   {% include widgets/author_box %}
+</div>
+{% endif %}

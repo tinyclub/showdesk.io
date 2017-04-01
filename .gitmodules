@@ -1,0 +1,12 @@
+[submodule "vtools"]
+	path = vtools
+	url = https://github.com/tinyclub/vtools.git
+[submodule "vnc2swf"]
+	path = vnc2swf
+	url = https://github.com/tinyclub/pyvnc2swf.git
+[submodule "vplayer"]
+	path = vplayer
+	url = https://github.com/tinyclub/vplayer.io.git
+[submodule "recordings/default"]
+	path = recordings/default
+	url = https://github.com/tinyclub/vrecordings

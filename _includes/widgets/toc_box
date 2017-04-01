@@ -1,0 +1,26 @@
+<section id="toc_widget" style="display: none" class="active">
+<a id="toc_widget_header" onclick="common_click('#toc_widget_container', '#toc_widget_icon', 'bookmark', 'bookmark-empty')"><i id="toc_widget_icon" class="icon-fixed-width icon-bookmark" style="text-align: center"></i> 内容导航</a>
+<nav id="toc_widget_container" class="toc_widget_container hidden-print hidden-xs hidden-sm">
+  <ul id="toc_widget_content" class="nav">
+    <!-- code will be generated in toc.js -->
+  </ul>
+</nav>
+</section>
+
+{% if page.ctg %}
+  {% assign draw_toc = 0 %}
+{% else %}
+  {% assign draw_toc = 1 %}
+{% endif %}
+
+<script>
+jQuery(function($) {
+    $(document).ready( function() {
+        /* Generate the side navigation `ul` elements */
+        Toc.createToc($("#toc_widget_content"), $("#main_content_container"), $("#toc_widget"), {{ draw_toc }});
+
+        /* caculate affixing */
+        Toc.setTocAffixing();
+    });
+});
+</script>

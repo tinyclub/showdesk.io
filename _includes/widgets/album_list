@@ -1,0 +1,32 @@
+{% if page.album %}
+
+{% assign url = page.album | downcase | replace:' ','-' | replace:'/','-' | prepend: "/albums/#" | append: "-ref" %}
+{% assign prompt = "查看该专辑" %}
+{% assign truncate = true %}
+{% assign tooltip = false %}
+{% assign title = "专辑文章" %}
+{% assign icon = "coffee" %}
+{% assign list = site.posts %}
+{% assign condition = "album" %}
+{% assign value = page.album %}
+{% assign items_limit = 15 %}
+{% assign size = 0 %}
+
+{% for item in list %}
+{% if item.title and page.title and page.title == item.title %}
+  {% continue %}
+{% endif %}
+
+{% if item[condition] == value %}
+ {% assign size = 1 %}
+ {% break %}
+{% endif %}
+{% endfor %}
+
+{% if size != 0 %}
+<section id="album_widget">
+{% include widgets/lists %}
+</section>
+{% endif %}
+
+{% endif %}

@@ -1,0 +1,180 @@
+{% assign icon_open = "angle-down" %}
+{% assign icon_close = "angle-right" %}
+{% assign not_collapsable = "not_collapsable" %}
+{% assign not_empty = "" %}
+
+{% if page.url != site.JB.categories_path %}
+  {% assign categories_path = site.JB.categories_path %}
+{% else %}
+  {% assign categories_path = "" %}
+{% endif %}
+
+<section id="toc_widget" class="active">
+<a id="toc_widget_header" onclick="common_click('#toc_widget_container', '#toc_widget_icon', 'bookmark', 'bookmark-empty')"><i id="toc_widget_icon" class="icon-fixed-width icon-bookmark" style="text-align: center"></i> 视频分类</a>
+
+<nav id="toc_widget_container" class="toc_widget_container">
+  <ul id="toc_widget_content" class="nav">
+    {% assign p_ctg_list = "" %}
+    {% for category in site.data.categories %}
+    {% assign forloop0 = forloop %}
+    <li id="ctg-{{ forloop0.index }}">
+      {% if category.categories %}
+        <i class="icon-fixed-width icon-{{ icon_close }}" onclick="click_toc('#ctg-{{ forloop0.index }}', '{{ icon_open }}', '{{ icon_close }}')"></i>
+      {% else %}
+        <i class="icon-fixed-width icon-{{ icon_close }}" {{ not_collapsable }} ></i>
+      {% endif %}
+
+      {% assign name = category.name %}
+      {% assign downcase_name = name | downcase %}
+      {% assign size = site.categories[name].size %}
+      {% assign more = "" %}
+      {% assign not_empty = "" %}
+      {% if size %}
+        {% assign p_ctg_list = p_ctg_list | append:"," | append:name %}
+        {% capture size %} <span>({{size}})</span>{% endcapture %}
+        {% assign not_empty = "class='not_empty'" %}
+      {%endif%}
+      {% if size or categories_path == "" %}
+        {% capture more %}href="{{ downcase_name | replace:" ","-" | replace:"/","-" | prepend:'#' | prepend: categories_path }}-ref" {{ not_empty }}{% endcapture %}
+      {% endif %}
+      <a {{ more }}  title="{{ name }}">{{ name }}{{ size }}</a>
+    </li>
+
+      {% if category.categories %}
+       <ul id="ctg-{{ forloop0.index }}-cld" class="nav">
+
+        {% for child in category.categories %}
+          {% assign forloop1 = forloop %}
+          <li id="ctg-{{ forloop0.index }}-cld-{{ forloop1.index }}">
+             {% if child.categories %}
+               <i class="icon-fixed-width icon-{{ icon_close }}" onclick="click_toc('#ctg-{{ forloop0.index }}-cld-{{ forloop1.index }}', '{{ icon_open }}', '{{ icon_close }}')"></i>
+             {% else %}
+               <i class="icon-fixed-width icon-{{ icon_close }} {{ not_collapsable }}"></i>
+             {% endif %}
+
+             {% assign name = child.name %}
+             {% assign downcase_name = name | downcase %}
+             {% assign size = site.categories[name].size %}
+             {% assign more = "" %}
+             {% assign not_empty = "" %}
+             {% if size %}
+               {% assign p_ctg_list = p_ctg_list | append:"," | append:name %}
+               {% capture size %} <span>({{size}})</span>{% endcapture %}
+               {% assign not_empty = "class='not_empty'" %}
+             {%endif%}
+             {% if size or categories_path == "" %}
+               {% capture more %}href="{{ downcase_name | replace:" ","-" | replace:"/","-" | prepend:'#' | prepend: categories_path }}-ref" {{ not_empty }} {% endcapture %}
+             {%endif%}
+
+             <a {{ more }} title="{{ name }}">{{ name }}{{ size }}</a>
+          </li>
+
+          {% if child.categories %}
+
+           <ul id="ctg-{{ forloop0.index }}-cld-{{ forloop1.index }}-cld" class="nav">
+
+            {% for g in child.categories %}
+              <li id="ctg-{{ forloop0.index }}-cld-{{ forloop1.index }}-cld-{{ forloop.index }}">
+                 {% if g.categories %}
+                   <i class="icon-fixed-width icon-{{ icon_close }}" onclick="click_toc('#ctg-{{ forloop0.index }}-cld-{{ forloop1.index }}-cld-{{ forloop.index }}', '{{ icon_open }}', '{{ icon_close }}')"></i>
+                 {% else %}
+                   <i class="icon-fixed-width icon-{{ icon_close }} {{ not_collapsable }}"></i>
+                 {% endif %}
+
+                 {% assign name = g.name %}
+                 {% assign downcase_name = name | downcase %}
+                 {% assign size = site.categories[name].size %}
+                 {% assign more = "" %}
+                 {% assign not_empty = "" %}
+                 {% if size %}
+                   {% assign p_ctg_list = p_ctg_list | append:"," | append:name %}
+                   {% capture size %} <span>({{size}})</span>{% endcapture %}
+                   {% assign not_empty = "class='not_empty'" %}
+                 {%endif%}
+                 {% if size or categories_path == "" %}
+                   {% capture more %}href="{{ downcase_name | replace:" ","-" | replace:"/","-" | prepend:'#' | prepend: categories_path }}-ref" {{ not_empty }} {% endcapture %}
+                 {%endif%}
+
+                 <a {{ more }} title="{{ name }}">{{ name }}{{ size }}</a>
+              </li>
+
+              {% if g.categories %}
+                <ul id="ctg-{{ forloop0.index }}-cld-{{ forloop1.index }}-cld-{{ forloop.index }}-cld" class="nav">
+                  {% for gg in g.categories %}
+
+                    {% assign name = gg.name %}
+                    {% assign downcase_name = name | downcase %}
+                    {% assign size = site.categories[name].size %}
+                    {% assign more = "" %}
+                    {% assign not_empty = "" %}
+                    {% if size %}
+                      {% assign p_ctg_list = p_ctg_list | append:"," | append:name %}
+                      {% capture size %} <span>({{size}})</span>{% endcapture %}
+                      {% assign not_empty = "class='not_empty'" %}
+                    {%endif%}
+                    {% if size or categories_path == "" %}
+                      {% capture more %}href="{{ downcase_name | replace:" ","-" | replace:"/","-" | prepend:'#' | prepend: categories_path }}-ref" {{ not_empty }} {% endcapture %}
+                    {%endif%}
+
+                    <li><i class="icon-fixed-width icon-{{ icon_close }} {{ not_collapsable }}"></i><a {{ more }} title="{{ name }}">{{ name }}{{ size }}</a></li>
+                 {% endfor %}
+                </ul>
+              {% endif %}
+            {% endfor %}
+
+           </ul>
+          {% endif %}
+
+        {% endfor %}
+       </ul>
+      {% endif %}
+
+    {% endfor %}
+
+   <!-- 其他分类 -->
+   {% assign name = "未经分类" %}
+   {% assign ctg_id = "ctg-1000" %}
+   {% assign more = "" %}
+   <li id="{{ ctg_id }}">
+      <i class="icon-fixed-width icon-{{ icon_close }}" onclick="click_toc('#{{ ctg_id }}', '{{ icon_open }}', '{{ icon_close }}')"></i>
+      {% capture more %}href="{{ categories_path | append:'#' | append:name }}-ref" {% endcapture %}
+      <a {{ more }} title="{{ name }}">{{ name }}</a>
+   </li>
+   <ul id="{{ ctg_id }}-cld" class="nav">
+
+    {% assign p_ctg_list = p_ctg_list | downcase | split:"," %}
+
+    {% for category in site.categories %}
+      {% assign name = category[0] | downcase %}
+      {% if p_ctg_list contains name %}
+        {% continue %}
+      {% endif %}
+
+      <li>
+          <i class="icon-fixed-width icon-{{ icon_close }} {{ not_collapsable }}"></i>
+
+          {% assign size = category[1].size %}
+          {% assign more = "" %}
+          {% assign not_empty = "" %}
+          {% if size %}
+            {% capture size %} <span>({{size}})</span>{% endcapture %}
+            {% assign not_empty = "class='not_empty'" %}
+          {% endif %}
+          {% if size or categories_path == "" %}
+            {% capture more %}href="{{ name | downcase | replace:" ","-" | prepend:'#' | prepend: categories_path }}-ref" {{ not_empty }} {% endcapture %}
+          {%endif%}
+
+          <a {{ more }} title="{{ name }}">{{ name }}{{ size }}</a>
+
+      </li>
+    {% endfor %}
+   </ul>
+  </ul>
+</nav>
+</section>
+
+<script>
+$(document).ready(function() {
+   color_toc();
+});
+</script>

@@ -1,0 +1,51 @@
+{% for sidebar in site.data.sidebars %}
+  {% if sidebar.disable %}
+    {% continue %}
+  {% endif %}
+   {% assign title = sidebar.title %}
+   {% assign icon = sidebar.icon %}
+   {% assign tooltip = sidebar.tooltip %}
+   {% assign prompt = title | prepend: "更多" %}
+   {% assign url = sidebar.url %}
+   {% assign size = 0 %}
+   {% assign condition = nil %}
+   {% assign value = "" %}
+   {% assign item_limits = nil %}
+   {% if sidebar.style == "new" %}
+   {% assign new_icon_style=true %}
+   {% else %}
+   {% assign new_icon_style=false %}
+   {% endif %}
+
+   {% if site.data[sidebar.data] != nil %}
+     {% assign list = site.data[sidebar.data] %}
+     {% assign size = list.size %}
+   {% else %}
+     {% assign list = site[sidebar.src] %}
+     {% assign condition = sidebar.condition %}
+     {% assign value = sidebar.value  %}
+
+     {% for item in list %}
+       {% if item.title and page.title and page.title == item.title %}
+         {% continue %}
+       {% endif %}
+
+       {% if condition %}
+         {% if item[condition] == value %}
+           {% assign size = 1 %}
+           {% break %}
+         {% endif %}
+         {% if condition == 'path' and item[condition] contains value %}
+           {% assign size = 1 %}
+           {% break %}
+         {% endif %}
+       {% endif %}
+     {% endfor %}
+
+   {% endif %}
+   {% if size != 0 %}
+    <section id="{{ sidebar.data }}">
+     {% include widgets/lists %}
+    </section>
+   {% endif %}
+{% endfor %}

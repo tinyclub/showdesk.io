@@ -1,0 +1,91 @@
+# This is the default format.
+# For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink: /:title/
+
+baseurl: /
+encoding: utf-8
+
+markdown: kramdown
+# markdown: redcarpet
+# redcarpet:
+#  extensions: ["no_intra_emphasis", "autolink", "tables"]
+exclude: ["CNAME", ".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "TODO.md", "tools", "pdfs", "Dockerfile", "pyvnc2swf", "images/pyvnc2swf"]
+highlighter: rouge
+
+gems: [jekyll-paginate]
+paginate: 10
+
+# Themes are encouraged to use these universal variables
+# so be sure to set them if your theme uses them.
+#
+
+title : 桌面秀
+tagline: 轻松录制，即时分享！
+start: 2017
+
+production_url : http://showdesk.io
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  profile: false
+  ignore:
+    envs: []
+
+# All Jekyll-Bootstrap specific configurations are namespaced into this hash
+#
+JB :
+  version : 0.3.0
+
+  BASE_PATH : false
+  
+  ASSET_PATH : false
+  IMAGE_PATH : false
+  
+  theme_name: tinylab.org
+
+  archive_path: /archive/
+  authors_path: /authors/
+  categories_path : /categories/
+  tags_path : /tags/
+  albums_path: /albums/
+  groups_path: /groups/
+  atom_path : /atom.xml
+  rss_path : /rss.xml
+
+  sessions:
+    config: local
+    local:
+      vplayer: ../vplayer/
+      data: ../../../
+    remote:
+      vplayer: http://vplayer.io/
+      data: http://showdesk.io/
+
+  posts:
+    title_length: 25
+    related_limit: 5
+  sidebar:
+    items_limit: 5
+  author_box:
+    max_perline: 6
+  article:
+    categories_limit: 3
+
+  code_prettify:
+    theme: prettify
+
+  comments :
+    provider : gentie
+    gentie :
+      keyid: cb0f92d1ca4c46f2b5832f456b12655a
+
+  analytics :
+    providers :
+      - cnzz
+    cnzz :
+      tracking_id : '1261558968'
+
+  sharing :
+    provider : false

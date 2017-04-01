@@ -1,0 +1,65 @@
+---
+layout: page
+author: admin
+group: home
+toc: false
+ctg: true
+title: 桌面秀
+comments: false
+tagline: '轻松录制，即时分享！'
+keywords: showdesk,VNC,noVNC,vplayer,noVNC player
+description: 桌面秀，轻松录制，即时分享！
+---
+{% include JB/setup %}
+
+<!-- Recent Posts  -->
+<section id="home">
+  {% assign articles = paginator.posts %}
+  {% assign condition = 'layout' %}
+  {% assign value = 'post' %}
+  {% include widgets/articles %}
+</section>
+
+<!-- Pagination Links -->
+<section class="pagination pagination-centered">
+  <ul>
+    <!-- First Page -->
+    {% if paginator.previous_page %}
+    <li><a href="/index.html">&laquo;&laquo;</a></li>
+    {% else %}
+    <li class="disabled"><a href="#">&laquo;&laquo;</a></li>
+    {% endif %}
+
+    <!-- Previous Page -->
+    {% if paginator.previous_page %}
+    <li>
+      {% if paginator.previous_page == 1 %}
+      <a href="/index.html">&laquo;</a>
+      {% else %}
+      <a href="/page{{ paginator.previous_page }}">&laquo;</a>
+      {% endif %}
+    </li>
+    {% else %}
+    <li class="disabled"><a href="#">&laquo;</a></li>
+    {% endif %}
+
+    <!-- Current Page -->
+    <li class="active">
+      <span class="page_number ">第 {{ paginator.page }}/{{ paginator.total_pages }} 页</span>
+    </li>
+
+    <!-- Next Page -->
+    {% if paginator.next_page %}
+    <li><a href="/page{{paginator.next_page}}">&raquo;</a></li>
+    {% else %}
+    <li class="disabled"><a href="#">&raquo;</a></li>
+    {% endif %}
+
+    <!-- Last Page -->
+    {% if paginator.next_page %}
+    <li><a href="/page{{ paginator.total_pages }}">&raquo;&raquo;</a></li>
+    {% else %}
+    <li class="disabled"><a href="#">&raquo;&raquo;</a></li>
+    {% endif %}
+  </ul>
+</section>

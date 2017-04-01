@@ -1,0 +1,13 @@
+
+- title: Linux Kernel Homepage
+  permalink: http://www.kernel.org
+  recommend: false
+  description: Linux 内核官方首页。
+
+- title: Embedded Linux Wiki
+  permalink: http://elinux.org
+  description: Linux 基金会下属 CE Linux Forum 维护的嵌入式 Linux 维基百科。
+
+- title: Linux Weekly News
+  permalink: http://lwn.net
+  description: A reader-supported news site dedicated to producing the best coverage from within the Linux and free software development communities.

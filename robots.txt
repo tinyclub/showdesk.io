@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+sitemap: http://showdesk.io/sitemap.xml
