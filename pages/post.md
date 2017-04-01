@@ -73,10 +73,11 @@ order: 30
     $ git remote add USER https://github.com/USER/vrecordings
     $ git push USER master
 
-接着把会话和展示页面上传，并发 PR 到 [Showdesk.io][1]。
+接着把会话（sessions）和展示（_posts）页面以及视频列表（records.js）上传，并发 PR 到 [Showdesk.io][1]。
 
     $ git add sessions/*xxx*
-    $ git add _post/*xxx*
+    $ git add _posts/*xxx*
+    $ git add recordings/records.js
     $ git commit -s
     $ git remote add USER https://github.com/USER/showdesk.io
     $ git push USER gh-pages

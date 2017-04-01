@@ -59,7 +59,7 @@ To share the VNC sessions, simply generate the session and post pages for publis
 
     $ tools/publish.sh
 
-Commit the new generated data in `sessions/`, `_posts/` and `recordings/default/` into your own repo and then send a 'Pull Request' to [showdesk.io][7].
+Commit the new generated data in `sessions/`, `_posts/` and `recordings/records.js` into your own repo and then send a 'Pull Request' to [showdesk.io][7], afterwards, commit the video data in `recordings/default` and send a 'Pull Request' to [Vrecordings][9].
 
 If want to embed the session in your own web page, just check the `permalink` address in `sessions/`, for example:
 
@@ -98,3 +98,4 @@ To auto resize the video, use [iframeresizer][8]:
 [5]: https://github.com/tinyclub/pyvnc2swf
 [7]: https://github.com/tinyclub/showdesk.io
 [8]: https://github.com/davidjbradshaw/iframe-resizer
+[9]: https://github.com/tinyclub/vrecordings
