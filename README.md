@@ -45,7 +45,7 @@ Click the `noVNC REC` button on Desktop or issue the following command:
 
     $ tools/record.sh
 
-The sessions will be saved to `recordings/`. Before pressing the `start` button, please configure the vnc server, port, password and also the session title, author, category, tags and description.
+The sessions will be saved to `recordings/default/`. Before pressing the `start` button, please configure the vnc server, port, password and also the session title, author, category, tags and description.
 
 ### Replay
 
@@ -59,7 +59,7 @@ To share the VNC sessions, simply generate the session and post pages for publis
 
     $ ./tools/publish.sh
 
-Commit the new generated data in `sessions/`, `_posts/` and `recordings/` into your own repo and then send a 'Pull Request' to [showdesk.io][7].
+Commit the new generated data in `sessions/`, `_posts/` and `recordings/default/` into your own repo and then send a 'Pull Request' to [showdesk.io][7].
 
 If want to embed the session in your own web page, just check the `permalink` address in `sessions/` and link it with:
 
