@@ -16,7 +16,7 @@
 
 	{% capture iframe %}{% if page.session %}<iframe src="{{ page.session }}{{ fullscreen }}" width="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" border="0" allowfullscreen></iframe>{% endif %}{% endcapture %}
 
-	{% capture iframe_fullpath %}{% if page.session %}<iframe src="{% if not (page.session contains "http") %}{{ site.production_url }}{% endif %}{{ page.session }}{{ fullscreen }}" width="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" border="0" allowfullscreen></iframe>{% endif %}{% endcapture %}
+	{% capture iframe_fullpath %}{% if page.session %}<iframe src="{% unless page.session contains "http" %}{{ site.production_url }}{% endunless %}{{ page.session }}{{ fullscreen }}" width="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" border="0" allowfullscreen></iframe>{% endif %}{% endcapture %}
 
 	{{ iframe }}
 
