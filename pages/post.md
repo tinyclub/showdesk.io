@@ -35,9 +35,9 @@ order: 30
 
 ## 视频信息编辑
 
-录制的视频默认存放在 `recordings/default/` 目录下，流媒体化后的格式为 `.slice*`，建议分享时选择该格式，可以节省流量并提高加载体验。如果录制的视频不大，也可以用 `.zb64`，这个是单一文件，也有其便利性。
+录制的视频默认存放在 `recordings/default/` 目录下，流媒体化后的格式为 `.nvs*`，建议分享时选择该格式，可以节省流量并提高加载体验。如果录制的视频不大，也可以用 `.nvz`，这个是单一文件，也有其便利性。
 
-为了更好地展示视频信息，建议做一定编辑，可以打开 `.zb64` 文件进行编辑，配置好 `Title`，`Author`，`Category`，`Tags` 和 `Description`：
+为了更好地展示视频信息，建议做一定编辑，可以打开 `.nvz` 文件进行编辑，配置好 `Title`，`Author`，`Category`，`Tags` 和 `Description`：
 
     var VNC_frame_category = 'Linux 0.11';
     var VNC_frame_title = 'Linux 0.11 Lab Usage';
@@ -52,23 +52,23 @@ order: 30
 
 编辑完成后需要执行如下命令进行更新：
 
-    $ rm recordings/default/2017-04-02/test-showdesk.slice*
+    $ rm recordings/default/2017-04-02/test-showdesk.nvs*
     $ tools/publish.sh
 
 ## 分享视频
 
 有两种方式用于分享上述视频。
 
-第一种是直接把录制好的视频文件（所有刚录制 `.slice*`）放到自己的 Web 服务器上，然后直接通过我们开发的在线播放器 [Vplayer.io][http://vplayer.io] 播放：
+第一种是直接把录制好的视频文件（所有刚录制 `.nvs*`）放到自己的 Web 服务器上，然后直接通过我们开发的在线播放器 [Vplayer.io][http://vplayer.io] 播放：
 
-    http://vplayer.io?data=http://your-web-site/path/to/xxx.slice
+    http://vplayer.io?data=http://your-web-site/path/to/xxx.nvs
 
 另外一种是通过桌面秀（Showdesk.io）集中展示和分享，这个需要 Fork [Showdesk.io][4] 和视频数据库 [Vrecordings][12]。
 
 接着先把视频数据上传到自己 Fork 的仓库中，并发 PR 到 [Vrecordings][11]。
 
     $ cd recordings/default/
-    $ git add 2017-04-01/xxx.slice*
+    $ git add 2017-04-01/xxx.nvs*
     $ git commit -s
     $ git remote add USER https://github.com/USER/vrecordings
     $ git push USER master
