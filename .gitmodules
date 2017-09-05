@@ -1,16 +1,21 @@
 [submodule "vtools"]
 	path = vtools
 	url = https://github.com/tinyclub/vtools.git
+	ignore = all
 [submodule "vnc2swf"]
 	path = vnc2swf
 	url = https://github.com/tinyclub/pyvnc2swf.git
+	ignore = all
 [submodule "vplayer"]
 	path = vplayer
 	branch = gh-pages
 	url = https://github.com/tinyclub/vplayer.io.git
+	ignore = all
 [submodule "recordings/default"]
 	path = recordings/default
 	url = https://github.com/tinyclub/vrecordings
+	ignore = all
 [submodule "cloud-ubuntu"]
 	path = cloud-ubuntu
 	url = https://github.com/tinyclub/cloud-ubuntu
+	ignore = all
